@@ -1,0 +1,308 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroGreen — Frotas e Maquinário de Alta Performance</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-raw: #f5f3f6;
+            --surface-cyber: rgba(255, 255, 255, 0.9);
+            --neon-primary: #ff007a;
+            --neon-accent: #ff6b4a;
+            --neon-success: #e55395;
+            --text-main: #140b0f;
+            --border-cyber: rgba(214, 0, 98, 0.2);
+        }
+
+        html[data-theme="dark"] {
+            --bg-raw: #060204;
+            --surface-cyber: rgba(20, 11, 15, 0.75);
+            --text-main: #ffffff;
+            --border-cyber: rgba(255, 0, 122, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-raw);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-cyber);
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--neon-primary);
+        }
+
+        .btn-nav {
+            padding: 10px 20px;
+            border: 1px solid var(--neon-primary);
+            color: var(--text-main);
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .hero span {
+            color: var(--neon-primary);
+        }
+
+        .machinery-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            padding: 20px;
+        }
+
+        .cyber-card {
+            background: var(--surface-cyber);
+            border: 1px solid var(--border-cyber);
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            background: rgba(128,128,128,0.1);
+        }
+
+        .tech-specs {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .tech-specs td {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(128,128,128,0.1);
+            font-size: 14px;
+        }
+
+        .val {
+            text-align: right;
+            font-weight: bold;
+            color: var(--neon-success);
+        }
+
+        .dynamic-section {
+            max-width: 1300px;
+            margin: 80px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .panel-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid var(--border-cyber);
+        }
+
+        .features-section {
+            max-width: 1300px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-box {
+            background: rgba(128,128,128,0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-cyber);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">🌿 AGRO<span>GREEN</span></a>
+    <button class="btn-nav" id="themeBtn">TEMA</button>
+</header>
+
+<section class="hero">
+    <h1>Catálogo de Frotas <span>Pesadas</span></h1>
+    <p>Soluções industriais elétricas e autônomas para a arquitetura operacional da sua lavoura.</p>
+</section>
+
+<main class="machinery-grid">
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/1.png" alt="">
+        <h2>Trator Titan E-800</h2>
+        <p>Operações severas de preparo de solo.</p>
+        <table class="tech-specs">
+            <tr><td>Potência</td><td class="val">540 cv</td></tr>
+            <tr><td>Autonomia</td><td class="val">14h</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/2.png" alt="">
+        <h2>Pulverizador Chronos H-40</h2>
+        <p>Aplicação de precisão a laser.</p>
+        <table class="tech-specs">
+            <tr><td>Capacidade</td><td class="val">4.500 L</td></tr>
+            <tr><td>Economia</td><td class="val">35%</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/3.png" alt="">
+        <h2>Colheitadeira Ceres X-9</h2>
+        <p>Processamento de grãos regenerativo.</p>
+        <table class="tech-specs">
+            <tr><td>Descarga</td><td class="val">160 L/s</td></tr>
+            <tr><td>Energia</td><td class="val">Grafeno</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/4.png" alt="">
+        <h2>Transporter Atlas V-2</h2>
+        <p>Logística de transbordo autônoma.</p>
+        <table class="tech-specs">
+            <tr><td>Capacidade</td><td class="val">32 Ton</td></tr>
+            <tr><td>Sensores</td><td class="val">LiDAR</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/5.png" alt="">
+        <h2>Semeadora Gaia S-24</h2>
+        <p>Distribuição milimétrica de sementes.</p>
+        <table class="tech-specs">
+            <tr><td>Linhas</td><td class="val">24 Ativas</td></tr>
+            <tr><td>Precisão</td><td class="val">&lt; 1.2 cm</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/6.png" alt="">
+        <h2>Drone Falcon Eye-X</h2>
+        <p>Aerofotogrametria multiespectral.</p>
+        <table class="tech-specs">
+            <tr><td>Voo</td><td class="val">4.5 Horas</td></tr>
+            <tr><td>Cobertura</td><td class="val">1.200 Ha</td></tr>
+        </table>
+    </article>
+
+</main>
+
+<section class="dynamic-section">
+    <div>
+        <h2>Gestão Sustentável</h2>
+        <p>Força bruta aliada à precisão digital. Transformamos a operação agrícola em um ciclo contínuo de eficiência, onde a inovação é o combustível e a sustentabilidade, o nosso maior legado.</p>
+    </div>
+
+    <img class="panel-image" src="img/7.png" alt="Gestão Sustentável">
+</section>
+
+<section class="features-section">
+    <h2>Engenharia de Infraestrutura e Carga</h2>
+
+    <div class="features-grid">
+        <div class="feature-box">
+            <h3>Fast-Charge</h3>
+            <p>Recupere 80% da carga em 45 minutos com módulos móveis de campo.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Manutenção Preditiva</h3>
+            <p>Sensores térmicos e vibratórios evitam qualquer parada inesperada.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Baterias de Grafeno</h3>
+            <p>Tecnologia com ciclo de vida superior a 15 anos.</p>
+        </div>
+    </div>
+</section>
+
+<section style="text-align:center; margin:80px 0; padding:40px; border-top:1px solid var(--border-cyber);">
+    <h2>Para adquirir, entre em contato:</h2>
+
+    <div style="font-size:28px; font-family:'Orbitron'; margin:20px 0; color:var(--neon-primary);">
+        📞 +55 (11) 99999-9999
+    </div>
+
+    <div style="gap:20px; display:flex; justify-content:center;">
+        <a href="#" style="color:var(--text-main); font-weight:bold;">📸 @AGROGREEN_TECH</a>
+        <a href="#" style="color:var(--text-main); font-weight:bold;">💼 LINKEDIN/AGROGREEN</a>
+    </div>
+
+    <br><br>
+
+    <a href="servicos.html" class="btn-nav" style="padding:15px 40px;">
+        ← VOLTAR PARA SERVIÇOS
+    </a>
+</section>
+
+<script>
+    document.getElementById('themeBtn').onclick = () => {
+        const root = document.documentElement;
+        const isLight = root.getAttribute('data-theme') === 'light';
+        root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    };
+</script>
+
+</body>
+</html>
+```

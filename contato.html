@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - AgroGreen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+        --primary: #ff007a;
+        --bg-page: #ffffff; /* Fundo branco solicitado */
+        --text-main: #1e1b1d;
+        --text-muted: #5c535a;
+        --border-color: #eee;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .login-container {
+      background: #ffffff;
+      padding: 3rem;
+      border-radius: 32px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    h2 { font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main); }
+    p { color: var(--text-muted); margin-bottom: 2rem; }
+
+    .form-control {
+      border-radius: 16px;
+      padding: 12px 20px;
+      border: 1px solid var(--border-color);
+      background: #f9f9f9;
+    }
+
+    .btn-success {
+      background: var(--primary);
+      border: none;
+      border-radius: 16px;
+      padding: 14px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-success:hover {
+      background: #ff4a9a;
+    }
+
+    footer {
+      color: var(--text-muted);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <div class="login-container">
+      <h2>🌿 AgroGreen</h2>
+      <p>Acesse sua conta para continuar.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="mb-3 text-start">
+          <label class="form-label">Usuário</label>
+          <input type="text" id="usuario" class="form-control" placeholder="nome@agrogreen.com" required />
+        </div>
+
+        <div class="mb-3 text-start">
+          <label class="form-label">Senha</label>
+          <input type="password" id="senha" class="form-control" placeholder="••••••••" required />
+        </div>
+
+        <div id="erroLogin" class="text-danger mb-3" style="display:none;">Usuário ou senha inválidos.</div>
+        <button type="submit" class="btn btn-success w-100">Entrar</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 AgroGreen | Tecnologia Sustentável</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
+
+      if (usuario.includes('@') && senha.length >= 5) {
+        window.location.href = 'servicos.html';
+      } else {
+        document.getElementById('erroLogin').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

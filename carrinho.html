@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>AgroGreen — Central de Negociações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-raw: #f5f3f6;
+            --surface-cyber: rgba(255, 255, 255, 0.8);
+            --neon-primary: #ff007a;
+            --neon-success: #00ffaa;
+            --text-main: #140b0f;
+            --border-cyber: rgba(214, 0, 98, 0.3);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        html[data-theme="dark"] {
+            --bg-raw: #060204;
+            --surface-cyber: rgba(20, 11, 15, 0.85);
+            --text-main: #ffffff;
+            --border-cyber: rgba(255, 0, 122, 0.4);
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: 0.4s ease; }
+        body { background-color: var(--bg-raw); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+
+        .nav-header { position: absolute; top: 40px; width: 100%; display: flex; justify-content: space-around; align-items: center; }
+        .btn-ui { padding: 12px 24px; background: transparent; border: 1px solid var(--border-cyber); color: var(--text-main); border-radius: 8px; cursor: pointer; text-transform: uppercase; font-weight: 700; font-size: 12px; letter-spacing: 1px; }
+        .btn-ui:hover { background: var(--border-cyber); }
+
+        .contact-box { 
+            width: 100%; max-width: 500px; padding: 60px; 
+            border: 1px solid var(--border-cyber); border-radius: 30px; 
+            background: var(--surface-cyber); backdrop-filter: blur(15px);
+            text-align: center; box-shadow: var(--card-shadow);
+        }
+        .contact-text { font-size: 20px; font-weight: 900; color: var(--neon-success); margin-bottom: 25px; text-transform: uppercase; font-family: 'Orbitron'; }
+        .phone { font-size: 32px; font-weight: 900; margin-bottom: 30px; display: block; color: var(--text-main); text-decoration: none; font-family: 'Orbitron'; }
+        .phone:hover { color: var(--neon-primary); }
+        .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+        .social-links a { color: var(--text-main); text-decoration: none; font-weight: bold; font-size: 13px; opacity: 0.7; }
+        .social-links a:hover { opacity: 1; color: var(--neon-primary); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-header">
+        <a href="servicos.html" class="btn-ui">← VOLTAR</a>
+        <button class="btn-ui" id="themeBtn">ALTERNAR TEMA</button>
+    </nav>
+
+    <section class="contact-box">
+        <div class="contact-text">Para adquirir, entre em contato</div>
+        <a href="https://wa.me/5511999999999" class="phone">📞 +55 (11) 99999-9999</a>
+        <div class="social-links">
+            <a href="#">📸 @AGROGREEN_TECH</a>
+            <a href="#">💼 LINKEDIN/AGROGREEN</a>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('themeBtn').onclick = () => {
+            const root = document.documentElement;
+            root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        };
+    </script>
+</body>
+</html>

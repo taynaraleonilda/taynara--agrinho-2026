@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Opinião - Conexão Sustentável</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #0b130e;
+      --green-glow: #38ef7d;
+      --green-dark: #11998e;
+      --glass-bg: rgba(255, 255, 255, 0.02);
+      --glass-card: rgba(17, 153, 142, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f0f4f1;
+      --text-muted: #a2b7a9;
+      --game-wrong: #e74c3c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top right, #113824, transparent 45%),
+                  radial-gradient(circle at bottom left, #082015, transparent 50%),
+                  var(--bg-dark);
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* NAV BAR MODERNA */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(11, 19, 14, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1.2rem 2rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: #fff;
+      background: rgba(56, 239, 125, 0.1);
+    }
+
+    /* FORM CONTAINER */
+    .form-container {
+      max-width: 650px;
+      width: 90%;
+      margin: 8rem auto 4rem auto;
+      padding: 3rem 2.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-container h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      background: linear-gradient(135deg, #fff, var(--green-glow));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-container .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-size: 0.95rem;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--green-glow);
+      box-shadow: 0 0 15px rgba(56, 239, 125, 0.15);
+      color: #fff;
+    }
+
+    /* VALIDAÇÕES */
+    .form-control.is-invalid {
+      border-color: var(--game-wrong) !important;
+      background-image: none;
+    }
+
+    .invalid-feedback {
+      font-size: 0.85rem;
+      color: var(--game-wrong);
+      margin-top: 0.4rem;
+    }
+
+    /* BOTÃO SUBMIT */
+    .btn-submit {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-glow));
+      color: #0b130e;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      padding: 1rem 0;
+      border-radius: 12px;
+      width: 100%;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(56, 239, 125, 0.25);
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.01) translateY(-1px);
+      box-shadow: 0 12px 30px rgba(56, 239, 125, 0.4);
+    }
+
+    /* ALERTA DE SUCESSO NEOMORFO/GLASS */
+    #feedbackSucesso {
+      margin-top: 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: auto;
+      background: rgba(11, 19, 14, 0.5);
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.8rem;
+      padding: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0; }
+      .form-container { padding: 2rem 1.5rem; margin-top: 6rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="servicos.html">Serviços</a></li>
+      <li><a href="feedback.html" class="active">Feedback</a></li>
+    </ul>
+  </nav>
+
+  <div class="form-container">
+    <h2>Deixe Seu Feedback</h2>
+    <p class="subtitle">Queremos ouvir sua opinião sobre o ecossistema da Conexão Sustentável.</p>
+
+    <form id="formFeedback" novalidate>
+      <div class="form-group">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome" name="nome" class="form-control" required placeholder="Digite seu nome" />
+        <div class="invalid-feedback">Por favor, informe seu nome.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail Corporativo ou Pessoal</label>
+        <input type="email" id="email" name="email" class="form-control" required placeholder="exemplo@dominio.com" />
+        <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="mensagem">Sua Mensagem</label>
+        <textarea id="mensagem" name="mensagem" class="form-control" rows="5" required placeholder="Como podemos melhorar sua experiência biotecnológica?"></textarea>
+        <div class="invalid-feedback">Por favor, escreva sua mensagem.</div>
+      </div>
+
+      <button type="submit" class="btn-submit">Enviar Análise de Feedback</button>
+    </form>
+
+    <div id="feedbackSucesso" class="text-center"></div>
+  </div>
+
+  <footer>
+    &copy; 2026 Conexão Sustentável | Av. João XXIII, Mercedes - PR, Brasil
+  </footer>
+
+  <script>
+    document.getElementById('formFeedback').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome');
+      const email = document.getElementById('email');
+      const mensagem = document.getElementById('mensagem');
+      const feedback = document.getElementById('feedbackSucesso');
+
+      let valido = true;
+      feedback.innerHTML = '';
+
+      // Validação Nome
+      if (!nome.value.trim()) {
+        nome.classList.add('is-invalid');
+        valido = false;
+      } else {
+        nome.classList.remove('is-invalid');
+      }
+
+      // Validação E-mail
+      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email.value.trim() || !emailValido.test(email.value)) {
+        email.classList.add('is-invalid');
+        valido = false;
+      } else {
+        email.classList.remove('is-invalid');
+      }
+
+      // Validação Mensagem
+      if (!mensagem.value.trim()) {
+        mensagem.classList.add('is-invalid');
+        valido = false;
+      } else {
+        mensagem.classList.remove('is-invalid');
+      }
+
+      if (valido) {
+        feedback.style.color = '#38ef7d';
+        feedback.innerHTML = '✅ Relatório enviado! Obrigado por colaborar com a biosfera.';
+        
+        // Limpa campos
+        nome.value = '';
+        email.value = '';
+        mensagem.value = '';
+
+        nome.classList.remove('is-invalid');
+        email.classList.remove('is-invalid');
+        mensagem.classList.remove('is-invalid');
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroGreen — Pulverização e Coleta de Precisão</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-raw: #f5f3f6;
+            --surface-cyber: rgba(255,255,255,0.9);
+            --neon-primary: #ff007a;
+            --neon-success: #f6489f;
+            --text-main: #140b0f;
+            --border-cyber: rgba(214,0,98,0.2);
+        }
+
+        html[data-theme="dark"] {
+            --bg-raw: #060204;
+            --surface-cyber: rgba(20,11,15,0.75);
+            --text-main: #ffffff;
+            --border-cyber: rgba(255,0,122,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: 0.3s;
+        }
+
+        body {
+            background: var(--bg-raw);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-cyber);
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--neon-primary);
+        }
+
+        .btn-nav {
+            padding: 10px 20px;
+            border: 1px solid var(--neon-primary);
+            background: transparent;
+            color: var(--text-main);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-nav:hover {
+            background: var(--neon-primary);
+            color: white;
+            box-shadow: 0 0 15px var(--neon-primary);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 span {
+            color: var(--neon-primary);
+        }
+
+        .hero p {
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        .machinery-grid {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            padding: 20px;
+        }
+
+        .cyber-card {
+            background: var(--surface-cyber);
+            border: 1px solid var(--border-cyber);
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(128,128,128,0.15);
+        }
+
+        .cyber-card h2 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .cyber-card p {
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        .tech-specs {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .tech-specs td {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(128,128,128,0.1);
+        }
+
+        .val {
+            text-align: right;
+            color: var(--neon-success);
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .panel {
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-cyber);
+            background: var(--surface-cyber);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">🌿 AGRO<span>GREEN</span></a>
+    <button class="btn-nav" id="themeBtn">TEMA</button>
+</header>
+
+<section class="hero">
+    <h1>Pulverização e <span>Coleta de Precisão</span></h1>
+    <p>Inteligência espectral para identificação individual de pragas e colheita seletiva por graduação de maturação.</p>
+</section>
+
+<main class="machinery-grid">
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/8.png" alt="Imagem 8">
+        <h2>Spectra-Pulse V1</h2>
+        <p>Identificação analítica de pragas invasoras e anomalias biológicas por assinatura térmica infravermelha.</p>
+        <table class="tech-specs">
+            <tr>
+                <td>Precisão</td>
+                <td class="val">99.9%</td>
+            </tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/9.png" alt="Imagem 9">
+        <h2>Nano-Spray Logic</h2>
+        <p>Sistema inteligente de aplicação seletiva microgota a gota (Jet-Sense), evitando desperdícios hídricos.</p>
+        <table class="tech-specs">
+            <tr>
+                <td>Economia</td>
+                <td class="val">60%</td>
+            </tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/10.png" alt="Imagem 10">
+        <h2>Harvest-Eye AI</h2>
+        <p>Braços robóticos integrados com colheita automatizada individualizada por espectro de cor e maturação.</p>
+        <table class="tech-specs">
+            <tr>
+                <td>Velocidade</td>
+                <td class="val">Ultra-High</td>
+            </tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/11.png" alt="Imagem 11">
+        <h2>Drone Swarm-X</h2>
+        <p>Frota de drones autônomos interconectados via nuvem para varredura e pulverização aérea em larga escala.</p>
+        <table class="tech-specs">
+            <tr>
+                <td>Cobertura</td>
+                <td class="val">500 ha/dia</td>
+            </tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/12.png" alt="Imagem 12">
+        <h2>Soil-Analytic Hub</h2>
+        <p>Sensores IoT enterrados que monitoram em tempo real o balanço de NPK.</p>
+        <table class="tech-specs">
+            <tr>
+                <td>Latência</td>
+                <td class="val">Zero</td>
+            </tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/13.png" alt="Imagem 13">
+        <h2>Adaptive Nozzle-Grid</h2>
+        <p>Bicos atomizadores eletrostáticos inteligentes guiados por Inteligência Artificial.</p>
+        <table class="tech-specs">
+            <tr>
+                <td>Ajuste</td>
+                <td class="val">Micro-seg</td>
+            </tr>
+        </table>
+    </article>
+
+</main>
+
+<section style="max-width:1300px; margin:80px auto; padding:0 40px;">
+    <div class="panel">
+        <h2 style="margin-bottom:25px; font-family:'Orbitron';">
+            Protocolo de Inteligência Integrada
+        </h2>
+
+        <p>Monitoramento espectral, gestão de fluxo (VRT) e conectividade Edge para agricultura de precisão.</p>
+    </div>
+</section>
+
+<section style="text-align:center; margin:80px 0; padding:40px; border-top:1px solid var(--border-cyber);">
+    <h2>Para adquirir, entre em contato:</h2>
+
+    <div style="font-size:28px; font-family:'Orbitron'; margin:20px 0; color:var(--neon-primary);">
+        📞 +55 (11) 99999-9999
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:20px; margin-bottom:30px;">
+        <a href="#" style="text-decoration:none; color:var(--text-main);">
+            📸 @AGROGREEN_TECH
+        </a>
+
+        <a href="#" style="text-decoration:none; color:var(--text-main);">
+            💼 LINKEDIN/AGROGREEN
+        </a>
+    </div>
+
+    <a href="servicos.html" class="btn-nav">
+        ← VOLTAR PARA SERVIÇOS
+    </a>
+</section>
+
+<script>
+    document.getElementById('themeBtn').onclick = () => {
+        const root = document.documentElement;
+
+        if (root.getAttribute('data-theme') === 'light') {
+            root.setAttribute('data-theme', 'dark');
+        } else {
+            root.setAttribute('data-theme', 'light');
+        }
+    };
+</script>
+
+</body>
+</html>
+```

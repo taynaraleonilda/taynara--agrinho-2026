@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>AgroGreen AI — Atendimento Especializado</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        :root { --primary: #ff007a; --bg: #f9f9f9; --text: #1e1b1d; --surface: #ffffff; --border: #eee; }
+        html[data-theme="dark"] { --bg: #0a0507; --text: #fcfac6; --surface: #140b0f; --border: #333; }
+        
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; height: 100vh; margin: 0; transition: 0.3s; }
+        header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: var(--surface); }
+        .btn-nav { text-decoration: none; color: var(--text); font-size: 14px; font-weight: 600; border: 1px solid var(--border); padding: 8px 15px; border-radius: 8px; cursor: pointer; background: transparent; }
+        
+        #chatMessages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+        .message { padding: 12px 18px; border-radius: 15px; max-width: 80%; line-height: 1.5; }
+        .user { background: var(--primary); color: white; align-self: flex-end; }
+        .gemini { background: var(--surface); border: 1px solid var(--border); align-self: flex-start; }
+        
+        .quick-replies { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .btn-reply { background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 5px 12px; border-radius: 15px; cursor: pointer; font-size: 13px; font-weight: 600; }
+        .btn-reply:hover { background: var(--primary); color: white; }
+        
+        .footer-info { margin-top: 10px; font-size: 12px; color: #666; border-top: 1px solid var(--border); padding-top: 10px; }
+        .input-area { padding: 20px; background: var(--surface); border-top: 1px solid var(--border); display: flex; gap: 10px; }
+        input { flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 5px; outline: none; background: transparent; color: var(--text); }
+        button { padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="servicos.html" class="btn-nav">← VOLTAR</a>
+    <div style="font-weight: 900;">AGROGREEN AI</div>
+    <button class="btn-nav" id="themeBtn">TEMA</button>
+</header>
+
+<div id="chatMessages">
+    <div class="message gemini">Olá! Bem-vindo à AgroGreen. Como posso ajudar sua produção hoje?</div>
+</div>
+
+<form class="input-area" id="chatForm">
+    <input type="text" id="userInput" placeholder="Digite aqui..." required>
+    <button type="submit">Enviar</button>
+</form>
+
+<script>
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const userInput = document.getElementById('userInput');
+    let session = { step: 'IDLE', topic: null };
+
+    document.getElementById('themeBtn').onclick = () => {
+        const root = document.documentElement;
+        root.setAttribute('data-theme', root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    };
+
+    const footer = `<div class="footer-info">📞 +55 (11) 99999-9999<br>📸 @AGROGREEN_TECH | 💼 LINKEDIN/AGROGREEN</div>`;
+
+    function process(input) {
+        const text = input.toLowerCase();
+
+        // 1. Reset para Humano (Prioridade Máxima)
+        if (text.includes('humano') || text.includes('atendente')) {
+            session = { step: 'IDLE', topic: null };
+            return { text: "Um consultor te chamará em instantes. Enquanto isso, posso ajudar com mais alguma dúvida técnica?", sug: ["Energia Solar", "Biodigestores", "Maquinário"] };
+        }
+
+        // 2. Fluxo: Maquinário (Corrigido para aceitar o clique)
+        if (text.includes('maquinário') || text.includes('trator') || session.topic === 'maquinario') {
+            if (text.includes('ficha')) {
+                return { text: "Resumo Técnico: Trator elétrico 4x4, autonomia de 8h, carga rápida. Deseja falar com um especialista?", sug: ["Falar com humano"] };
+            }
+            session.topic = 'maquinario';
+            return { text: "Nossos tratores elétricos cortam custos em 60%. Deseja ver a ficha técnica ou falar com um especialista?", sug: ["Ficha Técnica", "Falar com humano"] };
+        }
+
+        // 3. Fluxo: Solar
+        if (text.includes('solar') || session.topic === 'solar') {
+            if (text.includes('sim')) { session.step = 'GATHERING_AREA'; return { text: "Qual o tamanho da sua área (ha)?", sug: ["50ha", "200ha", "500+ha"] }; }
+            session.topic = 'solar'; session.step = 'ASK_SIMULATION';
+            return { text: "Energia solar reduz custos em 90%. Quer simular economia?", sug: ["Sim, quero simular!", "Falar com humano"] };
+        }
+
+        // 4. Fluxo: Biodigestor
+        if (text.includes('biodigestor')) {
+            session.topic = 'biodigestor';
+            return { text: "O BioCore X1 transforma resíduos em lucro. Quer ver como funciona?", sug: ["Sim, mostre!", "Falar com humano"] };
+        }
+
+        // 5. Fluxo: Coleta de Área
+        if (session.step === 'GATHERING_AREA') {
+            session.step = 'FINALIZED';
+            return { text: `Entendido! Com **${input}**, preparei um pré-projeto. Um especialista entrará em contato.`, sug: ["Falar com humano"] };
+        }
+
+        return { text: "Não entendi bem. Posso te ajudar com **Energia Solar**, **Biodigestores** ou **Maquinário**.", sug: ["Energia Solar", "Biodigestores", "Maquinário"] };
+    }
+
+    chatForm.onsubmit = (e) => {
+        e.preventDefault();
+        const text = userInput.value;
+        append(text, 'user');
+        userInput.value = '';
+
+        setTimeout(() => {
+            const res = process(text);
+            const finalMsg = res.text + (res.text.includes("consultor") || res.text.includes("especialista") ? footer : "");
+            append(finalMsg, 'gemini', res.sug);
+        }, 500);
+    };
+
+    function append(text, sender, sug) {
+        const div = document.createElement('div');
+        div.className = `message ${sender}`;
+        div.innerHTML = marked.parse(text);
+        chatMessages.appendChild(div);
+        
+        if (sug && sender === 'gemini') {
+            const container = document.createElement('div');
+            container.className = 'quick-replies';
+            sug.forEach(s => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-reply';
+                btn.textContent = s;
+                btn.onclick = () => { userInput.value = s; chatForm.dispatchEvent(new Event('submit')); };
+                container.appendChild(btn);
+            });
+            chatMessages.appendChild(container);
+        }
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+</script>
+</body>
+</html>

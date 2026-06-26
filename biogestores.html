@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroGreen — Ecossistemas de Biogestão Avançada</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-raw: #f5f3f6;
+            --surface-cyber: rgba(255, 255, 255, 0.9);
+            --neon-primary: #ff007a;
+            --neon-success: #00ffaa;
+            --text-main: #140b0f;
+            --border-cyber: rgba(214, 0, 98, 0.2);
+        }
+
+        html[data-theme="dark"] {
+            --bg-raw: #060204;
+            --surface-cyber: rgba(20, 11, 15, 0.75);
+            --text-main: #ffffff;
+            --border-cyber: rgba(255, 0, 122, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-raw);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-cyber);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--neon-primary);
+        }
+
+        .btn-nav {
+            padding: 10px 20px;
+            border: 1px solid var(--neon-primary);
+            color: var(--text-main);
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .hero span {
+            color: var(--neon-primary);
+        }
+
+        .machinery-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            padding: 20px;
+        }
+
+        .cyber-card {
+            background: var(--surface-cyber);
+            border: 1px solid var(--border-cyber);
+            border-radius: 24px;
+            padding: 24px;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.05);
+        }
+
+        .tech-specs {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        .tech-specs td {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(128,128,128,0.1);
+            font-size: 14px;
+        }
+
+        .val {
+            text-align: right;
+            font-weight: bold;
+            color: var(--neon-success);
+        }
+
+        .info-grid {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .panel {
+            padding: 30px;
+            border: 1px solid var(--border-cyber);
+            border-radius: 20px;
+            background: var(--surface-cyber);
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="#" class="logo">🌿 AGRO<span>GREEN</span></a>
+    <button class="btn-nav" id="themeBtn">TEMA</button>
+</header>
+
+<section class="hero">
+    <h1>Ecossistemas de <span>Biogestão</span></h1>
+    <p>Ciclos regenerativos de alta eficiência para conversão energética autônoma.</p>
+</section>
+
+<main class="machinery-grid">
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/14.png" alt="BioCore Reactor X1">
+        <h2>BioCore Reactor X1</h2>
+        <p>Hidrólise acelerada para biomassa densa.</p>
+        <table class="tech-specs">
+            <tr><td>Eficiência</td><td class="val">98.5%</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/15.png" alt="Heliotropo Quantum">
+        <h2>Heliotropo Quantum</h2>
+        <p>Digestão anaeróbica com controle quântico.</p>
+        <table class="tech-specs">
+            <tr><td>Pureza</td><td class="val">99.9%</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/16.png" alt="Fertil-Synth G6">
+        <h2>Fertil-Synth G6</h2>
+        <p>Síntese de biofertilizante controlada.</p>
+        <table class="tech-specs">
+            <tr><td>Produção</td><td class="val">50 Ton/d</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/17.png" alt="Methan-Scrub v4">
+        <h2>Methan-Scrub v4</h2>
+        <p>Purificação de biogás para rede veicular.</p>
+        <table class="tech-specs">
+            <tr><td>Qualidade</td><td class="val">Grade A</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/18.png" alt="Termo-Regen Unit">
+        <h2>Termo-Regen Unit</h2>
+        <p>Cogeração térmica para estufas inteligentes.</p>
+        <table class="tech-specs">
+            <tr><td>Economia</td><td class="val">42%</td></tr>
+        </table>
+    </article>
+
+    <article class="cyber-card">
+        <img class="card-img" src="img/19.png" alt="Neuro-Bio Interface">
+        <h2>Neuro-Bio Interface</h2>
+        <p>IA central para gestão de colônias.</p>
+        <table class="tech-specs">
+            <tr><td>Latência</td><td class="val">0.01ms</td></tr>
+        </table>
+    </article>
+
+</main>
+
+<section class="info-grid">
+
+    <div class="panel">
+        <h2>Eficiência Termodinâmica</h2>
+        <p>Sistemas otimizados para máxima conversão energética com perdas mínimas no processo biológico.</p>
+    </div>
+
+    <div class="panel">
+        <h2>Rede Inteligente</h2>
+        <p>Todos os módulos se comunicam em tempo real para autorregulação do ecossistema agrícola.</p>
+    </div>
+
+</section>
+
+<section style="text-align:center; margin:80px 0; padding:40px; border-top:1px solid var(--border-cyber);">
+
+    <h2>Contato</h2>
+
+    <div style="font-size:28px; font-family:'Orbitron'; margin:20px 0; color:var(--neon-primary);">
+        📞 +55 (11) 99999-9999
+    </div>
+
+    <div style="display:flex; gap:20px; justify-content:center;">
+        <a href="#" style="color:var(--text-main); font-weight:bold;">📸 @AGROGREEN_TECH</a>
+        <a href="#" style="color:var(--text-main); font-weight:bold;">💼 LINKEDIN/AGROGREEN</a>
+    </div>
+
+    <br><br>
+
+    <a href="servicos.html" class="btn-nav" style="padding:15px 40px;">← VOLTAR PARA SERVIÇOS</a>
+
+</section>
+
+<script>
+    document.getElementById('themeBtn').onclick = () => {
+        const root = document.documentElement;
+        const isLight = root.getAttribute('data-theme') === 'light';
+        root.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    };
+</script>
+
+</body>
+</html>

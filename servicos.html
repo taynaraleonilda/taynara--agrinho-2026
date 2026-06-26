@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mulher na Tecnologia / Women in Tech">
+    <title>AgroGreen — Tecnologia Sustentável para o Campo e Indústria</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =============================================================
+           💻 DEV STATEMENT: 
+           Este ecossistema foi orgulhosamente planejado, estruturado e 
+           codificado por uma Mulher na Programação. 
+           =============================================================
+        */
+
+        :root {
+            --bg-page: #faf9fb;
+            --bg-surface: #ffffff;
+            --bg-header: rgba(250, 249, 251, 0.85);
+            --text-main: #1e1b1d;
+            --text-muted: #5c535a;
+            
+            --primary-gradient: linear-gradient(135deg, #ff007a 0%, #ff6b4a 100%);
+            --surface-gradient: linear-gradient(180deg, #ffffff 0%, #fff5f7 100%);
+            --dark-gradient: linear-gradient(135deg, #1e1b1d 0%, #3a2e36 100%);
+            
+            --primary: #ff007a;
+            --accent: #ff6b4a;
+            --border-color: rgba(255, 0, 122, 0.06);
+            --card-hover-border: rgba(255, 0, 122, 0.25);
+            --shadow-sm: 0 2px 8px rgba(255, 0, 122, 0.03);
+            --shadow-md: 0 16px 48px rgba(255, 0, 122, 0.05);
+            --shadow-lg: 0 24px 64px rgba(255, 0, 122, 0.12);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-blur: blur(25px);
+        }
+
+
+        html[data-theme="dark"] { 
+            --bg-page: #0a0507;
+            --bg-surface: #140b0f;
+            --bg-header: rgba(10, 5, 7, 0.85);
+            --text-main: #fcfac6; 
+            --text-muted: #aa9ca5;
+            
+            --primary-gradient: linear-gradient(135deg, #ff2e93 0%, #ff7b5f 100%);
+            --surface-gradient: linear-gradient(180deg, #140b0f 0%, #1e0f16 100%);
+            
+            --primary: #ff2e93;
+            --accent: #ff7b5f;
+            --border-color: rgba(255, 46, 147, 0.08);
+            --card-hover-border: rgba(255, 46, 147, 0.35);
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 16px 48px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.45);
+            --glass-bg: rgba(20, 11, 15, 0.7);
+        }
+
+  
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.4s ease, 
+                        transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+     
+        header {
+            background-color: var(--bg-header);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 85px;
+        }
+
+        .logo {
+            font-size: 22px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        .btn-ia {
+            background: var(--primary-gradient);
+            color: #ffffff !important;
+            padding: 12px 22px;
+            border-radius: 99px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(255, 0, 122, 0.2);
+        }
+
+        .btn-ia:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(255, 0, 122, 0.35);
+        }
+
+        .theme-toggle {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 99px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-section {
+            padding: 100px 0 80px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 64px;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .hero-text h1 span {
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+      
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 11; 
+            overflow: hidden;
+            border-radius: 32px;
+            box-shadow: var(--shadow-lg);
+            background-color: #0c0508;
+            border: 1px solid var(--border-color);
+            will-change: transform;
+        }
+
+        @media (min-width: 968px) {
+            .carousel-wrapper { aspect-ratio: 4 / 3; }
+        }
+
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            overflow: hidden;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                        visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 2;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75) contrast(1.05); 
+            transform: scale(1.06);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        .carousel-slide.active img { transform: scale(1.01); }
+
+        .carousel-overlay {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            width: calc(100% - 48px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: var(--glass-blur) saturate(190%);
+            -webkit-backdrop-filter: var(--glass-blur) saturate(190%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #1e1b1d;
+            padding: 28px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(15px);
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            z-index: 5;
+        }
+
+        html[data-theme="dark"] .carousel-overlay {
+            background: rgba(20, 11, 15, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .carousel-slide.active .carousel-overlay {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.1s;
+        }
+
+        .carousel-overlay h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .carousel-overlay p { font-size: 14.5px; line-height: 1.5; }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            background: var(--primary-gradient);
+            border: none;
+            color: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: 99px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(255, 0, 122, 0.3);
+        }
+
+        .carousel-wrapper:hover .carousel-btn { opacity: 1; transform: translateY(-50%) scale(1); pointer-events: auto; }
+        .carousel-btn:hover { transform: translateY(-50%) scale(1.1); box-shadow: 0 6px 18px rgba(255, 0, 122, 0.5); }
+        .carousel-btn.prev { left: 20px; }
+        .carousel-btn.next { right: 20px; }
+        
+        .carousel-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .carousel-nav {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 8px 14px;
+            border-radius: 99px;
+            backdrop-filter: blur(8px);
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 5px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .carousel-indicator.active { background: #ffffff; width: 32px; }
+
+        .metrics-section {
+            padding: 4px; 
+            background: var(--primary-gradient);
+            border-radius: 32px;
+            margin-bottom: 120px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .metrics-inner {
+            background: var(--bg-surface);
+            padding: 60px 40px;
+            border-radius: 28px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .metric-item h2 {
+            font-size: 46px;
+            background: var(--primary-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .metric-item p {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .proposito-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header { margin-bottom: 56px; }
+
+        .section-header .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 99px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-header h2 { font-size: 38px; line-height: 1.15; }
+
+        .grid-containers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .card {
+            background: var(--surface-gradient);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--card-hover-border); }
+        .card-img-wrapper { width: 100%; height: 230px; overflow: hidden; position: relative; }
+        
+        .card-img-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(255, 0, 122, 0.15) 100%);
+        }
+
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .card:hover img { transform: scale(1.05); }
+        .card-content { padding: 36px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-content h3 { font-size: 22px; margin-bottom: 14px; }
+        .card-content p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+    
+        .feedback-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+
+        .feedback-card {
+            background: var(--surface-gradient);
+            border: 1px solid var(--border-color);
+            padding: 36px;
+            border-radius: 28px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .feedback-card:hover { border-color: var(--card-hover-border); transform: translateY(-4px); }
+
+        .feedback-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-main);
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-info img {
+            width: 52px;
+            height: 52px;
+            border-radius: 99px;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            padding: 2px;
+            background: var(--bg-surface);
+        }
+
+        .user-info h4 { font-size: 16px; }
+        .user-info span { font-size: 13px; color: var(--text-muted); display: block; margin-top: 2px; }
+
+   
+        .faq-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .faq-item {
+            background: var(--surface-gradient);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 26px;
+            text-align: left;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-icon {
+            font-size: 11px;
+            color: var(--primary);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+            padding: 0 26px;
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-content {
+            padding-bottom: 26px;
+            max-height: 500px; 
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark-gradient);
+            padding: 60px 0;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        .footer-content p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .dev-badge {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: #ffffff;
+            background: var(--primary-gradient);
+            padding: 8px 20px;
+            border-radius: 99px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 0, 122, 0.3);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 968px) {
+            .hero-section { grid-template-columns: 1fr; gap: 48px; padding: 60px 0 40px; text-align: center; }
+            .hero-text h1 { font-size: 42px; }
+            .hero-text p { margin: 0 auto 32px; }
+            .carousel-wrapper { height: 380px; }
+            .carousel-nav { right: 50%; transform: translateX(50%); }
+            .metrics-inner { grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-wrapper">
+            <a href="#" class="logo">🌿 Agro<span>Green</span></a>
+            <nav>
+                <a href="#tecnologias">Tecnologias</a>
+                <a href="#impacto">Impacto</a>
+                <a href="#cases">Casos Reais</a>
+                <a href="#faq">Dúvidas</a>
+                <a href="ia.html" class="btn-ia">Acessar IA ✨</a>
+                <button class="theme-toggle" id="themeBtn" aria-label="Mudar Tema">🌙</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="hero-section reveal active">
+            <div class="hero-text">
+                <h1>Tecnologia de ponta para um ecossistema <span>lucrativo e limpo</span>.</h1>
+                <p>Apresentamos as soluções energéticas, mecânicas e digitais mais avançadas do mercado para modernizar lavouras e complexos industriais com pegada de carbono zero.</p>
+            </div>
+
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <article class="carousel-slide active">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=800&q=80" alt="Energia Solar em Planta Agroindustrial">
+                        <div class="carousel-overlay">
+                            <h3>Sistemas Fotovoltaicos Agro</h3>
+                            <p>Geração distribuída de energia solar integrada à área produtiva, reduzindo custos elétricos fixos em até 90%.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1592982537447-744077110b90?auto=format&fit=crop&w=800&q=80" alt="Maquinário Agrícola Eficiente">
+                        <div class="carousel-overlay">
+                            <h3>Frotas de Baixa Emissão</h3>
+                            <p>Tratores e colheitadeiras elétricas ou movidas a biocombustíveis puros com alta autonomia e torque.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=800&q=80" alt="Fábrica com Automação Verde">
+                        <div class="carousel-overlay">
+                            <h3>Automação Industrial Inteligente</h3>
+                            <p>Sensores IoT e IA preditiva voltados para o corte de emissões e mitigação do desperdício térmico nas caldeiras.</p>
+                        </div>
+                    </article>
+                </div>
+                
+                <button class="carousel-btn prev" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <button class="carousel-btn next" aria-label="Próximo">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+                
+                <div class="carousel-nav">
+                    <button class="carousel-indicator active" aria-label="Slide 1"></button>
+                    <button class="carousel-indicator" aria-label="Slide 2"></button>
+                    <button class="carousel-indicator" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="metrics-section reveal" id="impacto">
+            <div class="metrics-inner">
+                <div class="metric-item">
+                    <h2>Up to 90%</h2>
+                    <p>Economia em Combustível</p>
+                </div>
+                <div class="metric-item">
+                    <h2>-45%</h2>
+                    <p>Emissões de Gases de Efeito Estufa</p>
+                </div>
+                <div class="metric-item">
+                    <h2>2.5x</h2>
+                    <p>Mais Autonomia no Campo</p>
+                </div>
+                <div class="metric-item">
+                    <h2>Zero</h2>
+                    <p>Resíduos Tóxicos no Solo</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="proposito-section" id="tecnologias">
+            <div class="section-header reveal">
+                <span class="badge">Inovação Aplicada</span>
+                <h2>Soluções para o Campo e para a Indústria</h2>
+            </div>
+
+            <div class="grid-containers">
+                <article class="card reveal delay-1">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=500&q=80" alt="Eletrificação de Frotas Industriais">
+                    </div>
+                    <div class="card-content">
+                        <h3><a href="maquinario.html" style="text-decoration: none; color: inherit;">Maquinário Híbrido & Elétrico</a></h3>
+                        <p style="margin-bottom: 20px;">Substituição de motores a diesel tradicionais por tecnologia de propulsão limpa. Menos poluição atmosférica, menor custo por hora rodada e menos manutenção operacional.</p>
+                        <a href="maquinario.html" style="text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; margin-top: auto; display: inline-flex; align-items: center; gap: 4px;">Conhecer tecnologia →</a>
+                    </div>
+                </article>
+
+                <article class="card reveal delay-2">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=500&q=80" alt="Usinas de Biogás">
+                    </div>
+                    <div class="card-content">
+                        <h3><a href="biogestores.html" style="text-decoration: none; color: inherit;">Biodigestores Industriais</a></h3>
+                        <p style="margin-bottom: 20px;">Transformação de resíduos orgânicos agrícolas e subprodutos industriais em biogás de alta octanagem e biofertilizantes ricos para reuso imediato no solo.</p>
+                        <a href="biogestores.html" style="text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; margin-top: auto; display: inline-flex; align-items: center; gap: 4px;">Conhecer tecnologia →</a>
+                    </div>
+                </article>
+
+                <article class="card reveal delay-3">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=500&q=80" alt="IA e Drones no Monitoramento">
+                    </div>
+                    <div class="card-content">
+                        <h3><a href="pulverizacao.html" style="text-decoration: none; color: inherit;">Pulverização e Coleta de Precisão</a></h3>
+                        <p style="margin-bottom: 20px;">Uso de inteligência computacional aérea e tratores autônomos para aplicar insumos cirurgicamente apenas onde há necessidade, poupando recursos vitais da fazenda.</p>
+                        <a href="pulverizacao.html" style="text-decoration: none; color: var(--primary); font-weight: 600; font-size: 14px; margin-top: auto; display: inline-flex; align-items: center; gap: 4px;">Conhecer tecnologia →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="feedback-section" id="cases">
+            <div class="section-header reveal">
+                <span class="badge">Resultados Práticos</span>
+                <h2>Gente de impacto transformando a produção</h2>
+            </div>
+            
+            <div class="feedback-grid">
+                <div class="feedback-card reveal delay-1">
+                    <p>"Trocamos a alimentação energética de duas de nossas principais fábricas por usinas solares dedicadas recomendadas pela plataforma. O retorno sobre o investimento veio 14 meses antes do previsto."</p>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Gerente Industrial">
+                        <div>
+                            <h4>Roberto Alencar</h4>
+                            <span>Gerente de Infraestrutura — Novo Horizonte Indústria</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-card reveal delay-2">
+                    <p>"A transição para maquinários elétricos de baixa emissão eliminou nossa dependência das oscilações do preço do diesel. No campo, a eficiência operacional e o silêncio dos motores mudaram o ambiente de trabalho."</p>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Produtora Agrícola">
+                        <div>
+                            <h4>Aline Guimarães</h4>
+                            <span>Proprietária — Fazenda Vale Verde</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-card reveal delay-3">
+                    <p>"Como produtores familiares, achávamos que a tecnologia limpa era inacessível. Implementamos a captação de precisão e mini biodigestores através das parcerias e nossa margem de lucro líquido saltou 25%."</p>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&q=80" alt="Diretor de Cooperativa">
+                        <div>
+                            <h4>Antônio Maciel</h4>
+                            <span>Diretor — Cooperativa Familiar do Vale</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-card reveal delay-1">
+                    <p>"Conectamos nossos sistemas logísticos industriais de distribuição ao monitoramento preditivo de carbono. Hoje entregamos cargas para o mercado externo com o selo definitivo de emissão neutra."</p>
+                    <div class="user-info">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Diretora Global">
+                        <div>
+                            <h4>Dra. Camila Vasconcelos</h4>
+                            <span>VP de Supply Chain — LogGreen Global</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" id="faq">
+            <div class="section-header reveal" style="text-align: center;">
+                <span class="badge">Perguntas Técnicas</span>
+                <h2>Respondendo às principais dúvidas operacionais</h2>
+            </div>
+
+            <div class="faq-container reveal">
+                <div class="faq-item">
+                    <button class="faq-trigger">Essas máquinas menos poluentes aguentam o trabalho pesado no campo? <span class="faq-icon">&#9662;</span></button>
+                    <div class="faq-content">
+                        <p>Com certeza. Os motores elétricos modernos fornecem torque máximo imediato, superando os equivalentes a diesel em subidas e terrenos arenosos, além de possuírem menos peças móveis sujeitas a quebras.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Qual é o espaço necessário para implementar sistemas solares industriais? <span class="faq-icon">&#9662;</span></button>
+                    <div class="faq-content">
+                        <p>O espaço depende da demanda energética da planta. No entanto, utilizamos abordagens modulares como tetos industriais vazios ou áreas de solo infértil nas fazendas, aproveitando espaços mortos de forma eficiente.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">O custo de investimento inicial para pequenos produtores não é muito alto? <span class="faq-icon">&#9662;</span></button>
+                    <div class="faq-content">
+                        <p>Embora exista um custo inicial, o ecossistema conecta produtores a linhas de crédito verde governamentais e privadas específicas para a transição ecológica, com juros drasticamente reduzidos. O tempo médio de retorno (Payback) costuma variar de 2 a 4 anos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Como funciona a manutenção de frotas industriais sustentáveis? É difícil achar peças? <span class="faq-icon">&#9662;</span></button>
+                    <div class="faq-content">
+                        <p>A mecânica de tratores elétricos ou caldeiras biomassa chega a ser 60% mais simples que os modelos tradicionais a combustão por não possuírem sistemas de injeção complexos ou pistões de alta fricção. Mapeamos fornecedores nacionais que garantem peças de reposição rápidas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <span class="dev-badge">👩‍💻 Developed by a Woman in Tech ⚡</span>
+            <p>&copy; 2026 AgroGreen. Viabilizando o futuro da produção sustentável e lucrativa.</p>
+        </div>
+    </footer>
+
+    <script>
+       
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: "0px 0px -30px 0px" });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        let slideIndex = 0;
+        let slideInterval;
+
+        function updateSlidePosition() {
+            for(let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+                indicators[i].classList.remove('active');
+            }
+            slides[slideIndex].classList.add('active');
+            indicators[slideIndex].classList.add('active');
+        }
+
+        function nextSlide() { 
+            slideIndex = (slideIndex + 1) % slides.length; 
+            updateSlidePosition(); 
+        }
+        
+        function prevSlide() { 
+            slideIndex = (slideIndex - 1 + slides.length) % slides.length; 
+            updateSlidePosition(); 
+        }
+
+        nextBtn.addEventListener('click', () => { nextSlide(); restartInterval(); });
+        prevBtn.addEventListener('click', () => { prevSlide(); restartInterval(); });
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                if (slideIndex === index) return;
+                slideIndex = index;
+                updateSlidePosition();
+                restartInterval();
+            });
+        });
+
+        function startInterval() { slideInterval = setInterval(nextSlide, 5000); }
+        function restartInterval() { clearInterval(slideInterval); startInterval(); }
+        startInterval();
+
+        
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const parent = trigger.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+     
+        const themeBtn = document.getElementById('themeBtn');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        themeBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+        themeBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
